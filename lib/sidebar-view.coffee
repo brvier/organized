@@ -184,7 +184,11 @@ class SidebarView extends View
             today = moment().startOf('day')
 
             agendaItems.sort (a,b) =>
-              if a.date.isBefore(b.date)
+              if not a.date or not a.date.isValid()
+                return 0
+              else if b.date or not b.date.isValid()
+                return 0
+              else if a.date.isBefore(b.date)
                 return -1
               else if a.date.isAfter(b.date)
                 return 1
